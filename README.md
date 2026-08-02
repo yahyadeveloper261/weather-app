@@ -20,7 +20,9 @@ https://weather-app-rosy-kappa-93.vercel.app/
 <img width="1790" height="823" alt="Screenshot_2-8-2026_16828_weather-app-rosy-kappa-93 vercel app" src="https://github.com/user-attachments/assets/74b9280e-be77-40c0-bef0-024ecd05133a" />
 
 ### Mobile View
-![Mobile View](./screenshots/mobile.png)
+
+<img width="738" height="1600" alt="image" src="https://github.com/user-attachments/assets/54d6759e-7c2d-4feb-9f6e-602fce1c044e" />
+
 
 
 ## ✨ Features
