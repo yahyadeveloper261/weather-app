@@ -1,122 +1,194 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useEffect, useRef, useState } from 'react'
+import LoadingButton from './components/LoadingButton';
+import LoadingUI from './components/LoadingUI';
+import WeatherCard from './weatherFutures/WeatherCard';
+import ErrorUI from './components/ErrorUI';
+import CitySearch from '../CitySearch';
+import DarkBtn from './components/DarkBtn';
+export default function App() {
+const hurlyRef=useRef(null);
+  const [loading,setLoading]=useState(false);
+  const [errorMessage,setErrorMessage]=useState("");
+  const [city,setCity]=useState("")
+  const [selectedDay,setSelectedDay]=useState(null);
 
-function App() {
-  const [count, setCount] = useState(0)
+const [dark,setDark]=useState(()=>{
+    try {
+      return JSON.parse(localStorage.getItem("dark"))||false
+    } catch  {
+      return false;
+    }
+  });
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  useEffect(()=>{
+     if(!dark) return;
+try {
+  localStorage.setItem("dark",JSON.stringify(dark))
+} catch  {
+  console.log("error to saving")
 }
 
-export default App
+  },[dark])
+  
+
+  const [weather,setWeather]=useState(()=>{
+    try {
+      return JSON.parse(localStorage.getItem("weather"))||null
+    } catch  {
+      return null;
+    }
+  });
+
+  useEffect(()=>{
+     if(!weather) return;
+try {
+  localStorage.setItem("weather",JSON.stringify(weather))
+} catch  {
+  console.log("error to saving")
+}
+
+  },[weather])
+  
+
+  const api_key="ed358a4d42e7660408b33cbf97f42774"
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=metric`;
+
+  const EnterKey=(e)=>{
+    if(e.key==="Enter"){
+      getWeather();
+    }
+  }
+
+
+const getWeather=async()=>{
+if(!city.trim()){
+  alert("Please Enter City Name");
+  return;
+}
+
+try {
+
+setLoading(true)
+setErrorMessage("");
+const res=await fetch(url);
+
+if(!res.ok){
+  throw new Error("🌍 City not found. Please enter a valid city name.");
+}
+
+const data=await res.json();
+
+setWeather(data)
+console.log(data)
+  
+} catch (error) {
+  setErrorMessage(error.message)
+}
+finally{
+  setLoading(false)
+}
+}
+
+let sunRise="";
+let sunSet=""
+
+if(weather){
+  sunRise=new Date(weather.city.sunrise*1000).toLocaleTimeString([],{
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+   sunSet=new Date(weather.city.sunset*1000).toLocaleTimeString([],{
+     hour:"2-digit",
+    minute:"2-digit"
+   })
+  
+  
+
+}
+
+  return (
+
+<div
+className={`
+  min-h-screen
+
+  flex
+  flex-col
+  items-center
+
+  p-6
+
+  transition-all
+  duration-700
+
+  ${
+   dark
+    ? 
+    "bg-gradient-to-br from-gray-700 via-slate-600 to-gray-500 text-white"
+    :
+    "bg-gradient-to-br from-blue-100 via-cyan-100 to-blue-300 text-gray-900"
+  }
+`}
+>
+
+<div
+className={`
+w-full
+max-w-6xl
+mx-auto
+
+flex
+items-center
+gap-4
+
+mb-8
+
+p-4
+
+rounded-3xl
+
+backdrop-blur-xl
+
+transition-all
+duration-500
+
+${
+dark
+?
+"bg-white/10 shadow-2xl shadow-black/40 border border-gray-700"
+:
+"bg-white/50 shadow-xl shadow-blue-200/50 border border-white"
+}
+`}
+>
+  <div className="flex-1">
+    <CitySearch
+      city={city}
+      setCity={setCity}
+      EnterKey={EnterKey}
+    
+    />
+  </div>
+
+
+  <DarkBtn
+    dark={dark}
+    setDark={setDark}
+  />
+
+</div>
+  <LoadingButton loading={loading} getWeather={getWeather} dark={dark}/>
+
+<ErrorUI errorMessage={errorMessage}/>
+
+ <LoadingUI loading={loading}/>
+
+<WeatherCard loading={loading} weather={weather} 
+ dark={dark} sunSet={sunSet} sunRise={sunRise}
+ selectedDay={selectedDay} setSelectedDay={setSelectedDay}
+ hurlyRef={hurlyRef} />
+
+ 
+
+</div>
+  )}
