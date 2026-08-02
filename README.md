@@ -1,17 +1,47 @@
-# React + Vite
+# 🌤 Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive weather application built with React.js that provides real-time weather information, 5-day forecasts, and hourly weather updates.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+(Add your Netlify/Vercel link here)
 
-## React Compiler
+## 📸 Screenshots
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Light Mode
+![Light Mode](./screenshots/light.png)
 
-## Expanding the ESLint configuration
+### Dark Mode
+![Dark Mode](./screenshots/dark.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-"# weather-app" 
+### Mobile View
+![Mobile View](./screenshots/mobile.png)
+
+
+## ✨ Features
+
+- 🌍 Search weather by city
+- 🌡 Real-time temperature information
+- 📅 5 Days weather forecast
+- 🕒 Hourly weather forecast
+- 🌅 Sunrise and sunset timing
+- 💧 Humidity information
+- 🌬 Wind speed details
+- 🌧 Rain probability
+- 🌙 Dark / Light mode
+- 💾 LocalStorage support
+- 📱 Fully responsive design
+- ⚡ Loading and error handling
+
+
+## 🛠 Technologies Used
+
+- React.js
+- JavaScript (ES6+)
+- Tailwind CSS
+- OpenWeather API
+- LocalStorage
+- Vite
+
+
+## 📂 Project Structure
