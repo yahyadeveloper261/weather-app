@@ -3,7 +3,7 @@ import LoadingButton from './components/LoadingButton';
 import LoadingUI from './components/LoadingUI';
 import WeatherCard from './weatherFutures/WeatherCard';
 import ErrorUI from './components/ErrorUI';
-import CitySearch from '../CitySearch';
+import CitySearch from './components/CitySearch';
 import DarkBtn from './components/DarkBtn';
 export default function App() {
 const hurlyRef=useRef(null);
@@ -25,7 +25,7 @@ const [dark,setDark]=useState(()=>{
 try {
   localStorage.setItem("dark",JSON.stringify(dark))
 } catch  {
-  console.log("error to saving")
+  console.log("Error to saving Dark/Light")
 }
 
   },[dark])
@@ -44,7 +44,7 @@ try {
 try {
   localStorage.setItem("weather",JSON.stringify(weather))
 } catch  {
-  console.log("error to saving")
+  console.log("error to saving Current Weather")
 }
 
   },[weather])
@@ -79,7 +79,7 @@ if(!res.ok){
 const data=await res.json();
 
 setWeather(data)
-console.log(data)
+
   
 } catch (error) {
   setErrorMessage(error.message)
