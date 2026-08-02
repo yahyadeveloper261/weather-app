@@ -10,7 +10,8 @@ https://weather-app-rosy-kappa-93.vercel.app/
 
 ### Light Mode
 
-![Uploading image.png…]()
+<img width="1891" height="828" alt="Screenshot_2-8-2026_16357_weather-app-rosy-kappa-93 vercel app" src="https://github.com/user-attachments/assets/09c39a96-80a2-4188-913e-a671a2c61d82" />
+
 
 
 ### Dark Mode
