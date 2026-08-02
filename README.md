@@ -51,35 +51,6 @@ https://weather-app-rosy-kappa-93.vercel.app/
 - Vite
 
 
-## 📂 Project Structure
-
-weather-app
-│
-├── src
-│ │
-│ ├── components
-│ │ ├── LoadingButton.jsx
-│ │ ├── LoadingUI.jsx
-│ │ ├── ErrorUI.jsx
-│ │ └── DarkBtn.jsx
-│ │
-│ ├── weatherFeatures
-│ │ ├── WeatherCard.jsx
-│ │ ├── WeatherHeader.jsx
-│ │ ├── WeatherTemp.jsx
-│ │ ├── WeatherDays.jsx
-│ │ ├── HourlyWeather.jsx
-│ │ └── Highlights.jsx
-│ │
-│ ├── App.jsx
-│ ├── main.jsx
-│ └── index.css
-│
-├── public
-│
-├── package.json
-├── vite.config.js
-└── README.md
 
 
 
