@@ -4,7 +4,7 @@ A modern and responsive weather application built with React.js that provides re
 
 ## 🚀 Live Demo
 
-(Add your Netlify/Vercel link here)
+https://weather-app-rosy-kappa-93.vercel.app/
 
 ## 📸 Screenshots
 
