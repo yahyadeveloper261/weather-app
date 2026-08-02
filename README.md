@@ -9,7 +9,9 @@ https://weather-app-rosy-kappa-93.vercel.app/
 ## 📸 Screenshots
 
 ### Light Mode
-![Light Mode](./screenshots/light.png)
+
+![Uploading image.png…]()
+
 
 ### Dark Mode
 ![Dark Mode](./screenshots/dark.png)
