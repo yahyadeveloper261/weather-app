@@ -59,7 +59,6 @@ try {
     }
   }
 
-
 const getWeather=async()=>{
 if(!city.trim()){
   alert("Please Enter City Name");
